@@ -11,6 +11,9 @@ env:
   BUILD_JOB_NAME: "Github-Action-Sample"
   BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/
   BUILD_NUMBER: ${{ github.run_id }}
+  AQUA_EMAIL: ${{ secrets.AQUA_EMAIL }}
+  AQUA_PASS: ${{ secrets.AQUA_PASS }}
+  AQUA_SERVER: ${{ secrets.AQUA_SERVER }}
 jobs:
   scanner:
     name: scanning-image
@@ -21,8 +24,8 @@ jobs:
         
       - name: Aqua Credentials
         run: |
-          wget --user ${{ secrets.AQUA_EMAIL }} --password ${{ secrets.AQUA_PASS }} https://download.aquasec.com/scanner/2022.4/scannercli
+          wget --user "$AQUA_EMAIL" --password "$AQUA_PASS" https://download.aquasec.com/scanner/2022.4/scannercli
       - name: Aqua Scanner
         run: |
           chmod +x scannercli
-          ./scannercli scan -U ${{ secrets.AQUA_SERVER_USER }} -P ${{ secrets.AQUA_SERVER_PASS }} -H ${{ secrets.AQUA_SERVER }} ${{ env.IMAGE }} --registry "${{ env.REGISTRY }}"
+          ./scannercli scan -U "$AQUA_EMAIL" -P "$AQUA_PASS" -H "$AQUA_SERVER" "$IMAGE" --registry "$REGISTRY"
