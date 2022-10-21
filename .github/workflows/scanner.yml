@@ -2,7 +2,7 @@ name: scanner
 on:
   push:
     branches:
-    - main
+      - main
   pull_request:
   workflow_dispatch:
 env:
@@ -11,11 +11,6 @@ env:
   BUILD_JOB_NAME: "Github-Action-Sample"
   BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/
   BUILD_NUMBER: ${{ github.run_id }}
-  AQUA_EMAIL: ${{ secrets.AQUA_EMAIL }}
-  AQUA_PASS: ${{ secrets.AQUA_PASS }}
-  AQUA_SERVER: ${{ secrets.AQUA_SERVER }}
-  AQUA_SERVER_EMAIL: ${{ secrets.AQUA_SERVER_ID }}
-  AQUA_SERVER_PASS: ${{ secrets.AQUA_SERVER_PASS }}
 jobs:
   scanner:
     name: scanning-image
@@ -23,11 +18,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
+
       - name: Aqua Credentials
         run: |
-          wget --user "$AQUA_EMAIL" --password "$AQUA_PASS" https://download.aquasec.com/scanner/2022.4.142/scannercli
+          wget --user ${{ secrets.AQUA_EMAIL }} --password ${{ secrets.AQUA_PASS }} https://download.aquasec.com/scanner/2022.4.142/scannercli
       - name: Aqua Scanner
         run: |
           chmod +x scannercli
-          ./scannercli scan -H "$AQUA_SERVER" -U "$AQUA_SERVER_EMAIL" -P "$AQUA_SERVER_PASS"  "$IMAGE" --registry "$REGISTRY"
+          ./scannercli scan -U ${{ secrets.AQUA_SERVER_USER }} -P ${{ secrets.AQUA_SERVER_PASS }} -H ${{ secrets.AQUA_SERVER }} ${{ env.IMAGE }} --registry "${{ env.REGISTRY }}"
