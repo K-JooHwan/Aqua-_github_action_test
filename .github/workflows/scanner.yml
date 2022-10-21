@@ -15,7 +15,7 @@ env:
   AQUA_PASS: ${{ secrets.AQUA_PASS }}
   AQUA_SERVER: ${{ secrets.AQUA_SERVER }}
   AQUA_SERVER_EMAIL: ${{ secrets.AQUA_SERVER_ID }}
-  AQUA_SERVER_PASS: ${{ secrests.AQUA_SERVER_PASS }}
+  AQUA_SERVER_PASS: ${{ secrets.AQUA_SERVER_PASS }}
 jobs:
   scanner:
     name: scanning-image
