@@ -14,6 +14,8 @@ env:
   AQUA_EMAIL: ${{ secrets.AQUA_EMAIL }}
   AQUA_PASS: ${{ secrets.AQUA_PASS }}
   AQUA_SERVER: ${{ secrets.AQUA_SERVER }}
+  AQUA_SERVER_EMAIL: ${{ secrets.AQUA_SERVER_ID }}
+  AQUA_SERVER_PASS: ${{ secrests.AQUA_SERVER_PASS }}
 jobs:
   scanner:
     name: scanning-image
@@ -28,4 +30,4 @@ jobs:
       - name: Aqua Scanner
         run: |
           chmod +x scannercli
-          ./scannercli scan -U "$AQUA_EMAIL" -P "$AQUA_PASS" -H "$AQUA_SERVER" "$IMAGE" --registry "$REGISTRY"
+          ./scannercli scan -H "$AQUA_SERVER" -U "$AQUA_SERVER_ID" -P "$AQUA_SERVER_PASS"  "$IMAGE" --registry "$REGISTRY"
