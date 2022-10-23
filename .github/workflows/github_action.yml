@@ -28,4 +28,4 @@ jobs:
       - name: Aqua Scanner
         run: |
           chmod +x scannercli
-          ./scannercli scan --host "$AQUA_SERVER" -U "$AQUA_SERVER_USER" -P "$AQUA_SERVER_PASS" --registry "${{ env.REGISTRY }}"  ${{ env.IMAGE }}
+          ./scannercli scan --host "$AQUA_SERVER" --registry "${{ env.REGISTRY }}"  ${{ env.IMAGE }}
