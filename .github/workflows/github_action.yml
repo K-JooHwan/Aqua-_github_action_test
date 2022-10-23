@@ -1,4 +1,4 @@
-name: scanner
+name: naver-scanner
 on:
   push:
     branches:
