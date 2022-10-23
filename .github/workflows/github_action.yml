@@ -12,8 +12,8 @@ env:
   BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/
   BUILD_NUMBER: ${{ github.run_id }}
   AQUA_SERVER: ${{ secrets.AQUA_SERVER }}
-  AQUA_SERVER_USER: ${{ secrets.AQUA_SERVER_USER }}
-  AQUA_SERVER_PASS: ${{ secrets.AQUA_SERVER_PASS }}
+  AQUA_SERVER_USER: "dhkim1+navercloud@coetank.co.kr" #${{ secrets.AQUA_SERVER_USER }}
+  AQUA_SERVER_PASS: "Aquasecurity1!" #${{ secrets.AQUA_SERVER_PASS }}
 jobs:
   scanner:
     name: scanning-image
