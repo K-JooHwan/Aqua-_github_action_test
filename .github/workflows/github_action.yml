@@ -25,5 +25,5 @@ jobs:
       - name: Aqua Scanner
         run: |
           chmod +x scannercli
-          ./scannercli scan --host ${{ secrets.AQUA_SERVER }} --user "${{ secrets.AQUA_SERVER_USER }}" --password "${{ secrets.AQUA_SERVER_PASS }}" --registry "${{ env.REGISTRY }}"  ${{ env.IMAGE }}
+          ./scannercli scan --host ${{ secrets.AQUA_SERVER }} --user ${{ secrets.AQUA_SERVER_USER }} --password ${{ secrets.AQUA_SERVER_PASS }} --registry "${{ env.REGISTRY }}"  ${{ env.IMAGE }}
 
