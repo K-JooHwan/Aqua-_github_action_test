@@ -1,0 +1,12 @@
+name: 'Container Action Template'
+description: 'Get started with Container actions'
+author: 'GitHub'
+inputs: https://github.com/K-JooHwan/Aqua-_github_action_test
+  myInput:
+    description: 'Input to use'
+    default: 'world'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.myInput }}
