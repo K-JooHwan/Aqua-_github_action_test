@@ -11,9 +11,6 @@ env:
   BUILD_JOB_NAME: "Github-Action-Sample"
   BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/
   BUILD_NUMBER: ${{ github.run_id }}
-  AQUA_SERVER: ${{ secrets.AQUA_SERVER }}
-  AQUA_SERVER_USER: ${{ secrets.AQUA_SERVER_USER }}
-  AQUA_SERVER_PASS: ${{ secrets.AQUA_SERVER_PASS }}
 jobs:
   scanner:
     name: scanning-image
@@ -28,4 +25,4 @@ jobs:
       - name: Aqua Scanner
         run: |
           chmod +x scannercli
-          ./scannercli scan --dockerless --host $AQUA_SERVER -U $AQUA_SERVER_USER -P $AQUA_SERVER_PASS --registry "${{ env.REGISTRY }}"  ${{ env.IMAGE }}
+          ./scannercli scan --dockerless --host $AQUA_SERVER ${{ secrets.AQUA_SERVER }} -U ${{ secrets.AQUA_SERVER_USER }} -P ${{ secrets.AQUA_SERVER_PASS }} --registry "${{ env.REGISTRY }}"  ${{ env.IMAGE }}
