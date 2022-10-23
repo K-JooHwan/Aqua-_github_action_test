@@ -20,4 +20,4 @@ jobs:
         uses: actions/checkout@v2
         
       - name: AQUA Docker Scanner
-        uses: actions/docker-action@v1
+        uses: actions/docker-action@
