@@ -18,11 +18,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Aqua Credentials
-        run: |
-          wget --user ${{ secrets.AQUA_EMAIL }} --password ${{ secrets.AQUA_PASS }} https://download.aquasec.com/scanner/2022.4/scannercli
-      - name: Aqua Scanner
-        run: |
-          chmod +x scannercli
-          ./scannercli scan -U ${{ secrets.AQUA_SERVER_USER }} -P ${{ secrets.AQUA_SERVER_PASS }} -H ${{ secrets.AQUA_SERVER }} --registry "${{ env.REGISTRY }}" ${{ env.IMAGE }} 
+        
+      - name: AQUA Docker Scanner
+        uses: actions/docker-action@v1
